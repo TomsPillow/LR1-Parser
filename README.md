@@ -80,7 +80,7 @@ class SyntaxNode
         int col;
         int isTerminal;
         string value;
-  			// Only TSymbol
+        // Only TSymbol
         string stringValue;
         string type;
         vector<int> son;
