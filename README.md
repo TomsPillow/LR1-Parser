@@ -16,8 +16,6 @@
 
 
 
-
-
 ## How to Build
 
 ---
@@ -113,19 +111,16 @@ class SyntaxNode
 
 在`LR1-Parser/build`目录下输入`./LR1-Parser -?` ，可得到用法提示：
 
-> usage: ./LR1-Parser --Grammar=string [options] ... 
-> options:
->   -g, --Grammar                     Grammar YAML file path (string)
->   -t, --Tokens                      Tokens TEXT file path for Syntax-Parse (string [=])
->   -l, --Built LR1-Table             Load previously built LR1-Table YAML file (string [=])
->   -o, --Output LR1-Table            LR1-Table YAML file path (string [=./LR1-Parse-Table.yml])
->   -s, --Show LR1-Table obviously    Show LR1-Table in a CSV file (string [=])
->   -a, --Show AST                    TEXT file path of AST (string [=./ast.txt])
->   -e, --Easy mode                   Exit when error occured (string [=])
->   -d, --Debug mode                  Parse Tokens with stacks-infos(not for windows) (string [=])
->   -?, --help                        print this message
-
-
-
-
-
+```shell
+usage: ./LR1-Parser --Grammar=string [options] ... 
+options:
+  -g, --Grammar                     Grammar YAML file path (string)
+  -t, --Tokens                      Tokens TEXT file path for Syntax-Parse (string [=])
+  -l, --Built LR1-Table             Load previously built LR1-Table YAML file (string [=])
+  -o, --Output LR1-Table            LR1-Table YAML file path (string [=./LR1-Parse-Table.yml])
+  -s, --Show LR1-Table obviously    Show LR1-Table in a CSV file (string [=])
+  -a, --Show AST                    TEXT file path of AST (string [=./ast.txt])
+  -e, --Easy mode                   Exit when error occured (string [=])
+  -d, --Debug mode                  Parse Tokens with stacks-infos(not for windows) (string [=])
+  -?, --help                        print this message
+```
