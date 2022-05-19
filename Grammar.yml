@@ -1,0 +1,284 @@
+Grammar:
+  name: Pascal-S
+  Start-Symbol: program_struct
+  Non-Terminal-Symbols:
+    - program_struct
+    - program_head
+    - program_body
+    - idlist
+    - const_declarations
+    - const_declaration
+    - const_value
+    - var_declarations
+    - var_declaration
+    - type
+    - basic_type
+    - period
+    - subprogram_declarations
+    - subprogram
+    - subprogram_head
+    - subprogram_body
+    - formal_parameter
+    - parameter_list
+    - parameter
+    - var_parameter
+    - value_parameter
+    - compound_statement
+    - statement_list
+    - statement
+    - variable_list
+    - variable
+    - id_varpart
+    - procedure_call
+    - else_part
+    - expression_list
+    - expression
+    - simple_expression
+    - term
+    - factor
+    - record_type
+    - field_declarations
+  
+  # 转义字符使用 "xxx" 囊括该终结符
+  Terminal-Symbols:
+    - ";"
+    - "."
+    - program
+    - id
+    - ","
+    - const
+    - "+"
+    - "-"
+    - num
+    - "'"
+    - letter
+    - array
+    - "["
+    - "]"
+    - of
+    - integer
+    - real
+    - boolean
+    - char
+    - digits
+    - ".."
+    - epsilon
+    - procedure
+    - function
+    - "("
+    - ")"
+    - var
+    - begin
+    - end
+    - assignop
+    - if
+    - then
+    - else
+    - for
+    - to
+    - do
+    - read
+    - write
+    - relop
+    - addop
+    - mulop
+    - not
+    - uminus
+    - ":"
+    - "="
+    - record
+    - while
+    - repeat
+    - until
+
+  # 如果表达式右端包含转义字符使用 "xxx .. xxx" 囊括整个右端
+  Productions:
+    - left: program_struct
+      rights:
+        - "program_head ; program_body ."
+
+    - left: program_head
+      rights:
+        - "program id ( idlist )"
+        - program id
+
+    - left: program_body
+      rights:
+        - const_declarations var_declarations subprogram_declarations compound_statement
+
+    - left: idlist
+      rights:
+        - "idlist , id"
+        - id
+
+    - left: const_declarations
+      rights:
+        - "const const_declaration ;"
+        - epsilon
+
+    - left: const_declaration
+      rights:
+        - "const_declaration ; id = const_value"
+        - "id = const_value"
+
+    - left: const_value
+      rights:
+        - "+ num"
+        - "- num"
+        - num
+        - "' letter '"
+
+    - left: var_declarations
+      rights:
+        - "var var_declaration ;"
+        - epsilon
+
+    - left: var_declaration
+      rights:
+        - "var_declaration ; idlist : type"
+        - "idlist : type"
+
+    - left: type
+      rights:
+        - basic_type
+        - "array [ period ] of basic_type"
+        - record_type
+
+    - left: period
+      rights:
+        - "period , num .. num"
+        - "num .. num"
+    
+    - left: record_type
+      rights:
+        - "record field_declarations ; end"
+    
+    - left: field_declarations
+      rights:
+        - "idlist : type"
+        - "field_declarations ; idlist : type"
+
+    - left: subprogram_declarations
+      rights:
+        - "subprogram_declarations subprogram ;"
+        - epsilon
+
+    - left: subprogram
+      rights:
+        - "subprogram_head ; subprogram_body"
+
+    - left: subprogram_head
+      rights:
+        - procedure id formal_parameter
+        - "function id formal_parameter : basic_type"
+
+    - left: formal_parameter
+      rights:
+        - "( parameter_list )"
+        - epsilon
+
+    - left: parameter_list
+      rights:
+        - "parameter_list ; parameter"
+        - parameter
+
+    - left: parameter
+      rights:
+      - var_parameter
+      - value_parameter
+
+    - left: var_parameter
+      rights:
+        - var value_parameter
+
+    - left: value_parameter
+      rights:
+        - "idlist : basic_type"
+    
+    - left: basic_type
+      rights:
+        - integer
+        - real
+        - boolean
+        - char
+
+    - left: subprogram_body
+      rights:
+        - const_declarations var_declarations compound_statement
+
+    - left: compound_statement
+      rights:
+        - begin statement_list end
+
+    - left: statement_list
+      rights:
+        - "statement_list ; statement"
+        - statement
+
+    - left: statement
+      rights:
+        - variable assignop expression
+        - procedure_call
+        - compound_statement
+        - if expression then statement else_part
+        - for id assignop expression to expression do statement
+        - "read ( variable_list )"
+        - "write ( expression_list )"
+        - "while expression do statement"
+        - "repeat statement until expression"
+        - epsilon
+
+    - left: variable_list
+      rights:
+        - "variable_list , variable"
+        - variable
+
+    - left: variable
+      rights:
+        - id id_varpart
+        - "id . variable"
+
+    - left: id_varpart
+      rights:
+        - "[ expression_list ]"
+        - epsilon
+
+    - left: procedure_call
+      rights:
+        - id
+        - "id ( expression_list )"
+
+    - left: else_part
+      rights:
+        - else statement
+        - epsilon
+
+    - left: expression_list
+      rights:
+        - "expression_list , expression"
+        - expression
+
+    - left: expression
+      rights:
+        - simple_expression relop simple_expression
+        - simple_expression
+
+    - left: simple_expression
+      rights:
+        - simple_expression addop term
+        - term
+
+    - left: term
+      rights:
+        - term mulop factor
+        - factor
+
+    - left: factor
+      rights:
+        - num
+        - variable
+        - "id ( expression_list )"
+        - "( expression )"
+        - not factor
+        - "- factor"
+        - "' letter '"
