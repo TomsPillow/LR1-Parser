@@ -1,14 +1,10 @@
 # LR1-Parser
 
----
-
 `LR1-Parser`可作为编译前端语法分析部件，基于LR(1)算法开发，包括LR(1)分析表生成器模块和分析栈模块。
 
 
 
 ## Usage
-
----
 
 * 绘制LR(1)分析表；
 * 对记号（Tokens）进行语法分析，给出语法错误位置及相关恢复策略；
@@ -17,8 +13,6 @@
 
 
 ## How to Build
-
----
 
 ### Third Party Library
 
@@ -57,8 +51,6 @@ yaml-cpp，项目包括已构建好相关的静态库，包括 `macOS/Linux` 平
 
 ## Interface For Lex-Analysis
 
----
-
 ```c++
 typedef struct Token
 {
@@ -77,8 +69,6 @@ typedef struct Token
 
 
 ## Interface For Semantic-Analysis
-
----
 
 ```c++
 class SyntaxNode
@@ -106,8 +96,6 @@ class SyntaxNode
 
 
 ## Help
-
----
 
 在`LR1-Parser/build`目录下输入`./LR1-Parser -?` ，可得到用法提示：
 
