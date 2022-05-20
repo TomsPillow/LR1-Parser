@@ -45,11 +45,11 @@ yaml-cpp，项目包括已构建好相关的静态库，包括 `macOS/Linux` 平
    sh test.sh
    ```
 
-   查看 `LR1-Parser/test` 目录，若存在相应的LR(1)分析表文件 `LR1-Parse-Table.yml` 和其视图文件 `LR1-Parse-Table.csv`（可用excel软件打开查看），以及构建的语法树视图 `AST.txt`。
+   查看 `LR1-Parser/test` 目录，若存在相应的LR(1)分析表文件 `LR1-Parse-Table.yml` 和其视图文件 `LR1-Parse-Table.csv`（可用excel软件打开查看），以及构建的语法树视图 `AST.txt`。且 `LR1-Parser/` 目录下会存在 `debug.txt`文件，其中包含相关日志信息。
 
 
 
-## Interface For Lex-Analysis
+## Interface of Lex-Analysis
 
 ```c++
 typedef struct Token
@@ -68,7 +68,7 @@ typedef struct Token
 
 
 
-## Interface For Semantic-Analysis
+## Interface of Semantic-Analysis
 
 ```c++
 class SyntaxNode
@@ -80,7 +80,7 @@ class SyntaxNode
         int col;
         int isTerminal;
         string value;
-        // Only TSymbol
+  			// Only TSymbol
         string stringValue;
         string type;
         vector<int> son;
@@ -92,6 +92,57 @@ class SyntaxNode
         string to_string();
 };
 ```
+
+
+
+## About Grammar
+
+关于语法规则文件`Grammar.yml`，采用YAML文件格式，具体参数项如下例所示：
+
+```yaml
+Grammar:
+  name: Example
+  Start-Symbol: S
+  Non-Terminal-Symbols:
+    - S
+    - A
+
+  # 转义字符使用 "xxx" 囊括该终结符
+  Terminal-Symbols:
+		- +
+		- "-"
+		- num
+
+  # 如果表达式右端包含转义字符使用 "xxx .. xxx" 囊括整个右端
+  Productions:
+    - left: S
+      rights:
+      	- A + S
+      	- "A - S"
+        - num
+
+    - left: A
+      rights:
+        - num
+        - num + num
+        - "num - num"
+```
+
+
+
+## About Tokens
+
+关于记号输入 `Tokens.txt` 文件，每个`Token`占用一行，每行采用空格分隔形式依次说明该 `Token` 的行号，列号，名字值，类型值，和数值类型。
+
+例如：`"const PI=3.14;"`中的 `"3.14"`，假定其行号为1，其列号为10，名字值为`3.14`，类型值为`num`，数值类型为`real`。
+
+但是该文件格式存在一定的缺陷，若名字值为空格，则无法识别，**故建议修改代码，使用Token接口连接词法和语法分析**。
+
+
+
+## About Error Recovery
+
+关于 `LR1-Parser` 的错误恢复，采用 `Burke-Fisher` 方法的 `Primary Phase` ，仅通过增（InsertRecovery），删（DeleteRecovery）和替换（ReplaceRecovery）对草稿栈进行推测，设定 `MINICHECK`，最小检查距离，若能通过，则可作为一种恢复方式。
 
 
 
@@ -112,3 +163,19 @@ options:
   -d, --Debug mode                  Parse Tokens with stacks-infos(not for windows) (string [=])
   -?, --help                        print this message
 ```
+
+语法分析模式说明：
+
+* Default: 默认模式，包含错误恢复的语法分析，尽可能一次性分析出程序中存在的所有错误；
+* Easy mode: 简单模式，遇到错误直接退出；
+* debug mode: 调试模式，可在除windwos环境下使用，打印每次的分析动作及相关分析栈信息。
+
+
+
+## Reference
+
+* A PRACTICAL METHOD FOR SYNTACTIC ERROR DIAGNOSIS AND RECOVERY, by Michael Burke Gerald A. Fisher Jr., Courant Institute New York University 251 Mercer Street New York, New York 10012 
+
+* A Powerful LR Error Recovery Mechanism in the Compiler Implementation System Environment, Mariza A. S. Bigonha, Roberto S. Bigonha 
+
+* A Practical Minimum Distance Method for Syntax Error Handling, J. A. Dain, Department of Computer Science University of Warwick Coventry, CV4 7AL
