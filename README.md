@@ -176,6 +176,6 @@ options:
 
 * [A PRACTICAL METHOD FOR SYNTACTIC ERROR DIAGNOSIS AND RECOVERY, by Michael Burke Gerald A. Fisher Jr., Courant Institute New York University 251 Mercer Street New York, New York 10012](https://github.com/samona-omo/LR1-Parser/blob/main/docs/A%20PRACTICAL%20METHOD%20FOR%20SYNTACTIC%20ERROR%20DIAGNOSIS%20AND%20RECOVERY.pdf)
 
-* A Powerful LR Error Recovery Mechanism in the Compiler Implementation System Environment, Mariza A. S. Bigonha, Roberto S. Bigonha 
+* [A Powerful LR Error Recovery Mechanism in the Compiler Implementation System Environment, Mariza A. S. Bigonha, Roberto S. Bigonha](https://github.com/samona-omo/LR1-Parser/blob/main/docs/LR(1)-Error%20Recovery%20Mechanism.pdf)
 
 * A Practical Minimum Distance Method for Syntax Error Handling, J. A. Dain, Department of Computer Science University of Warwick Coventry, CV4 7AL
