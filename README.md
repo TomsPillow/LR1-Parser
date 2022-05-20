@@ -109,9 +109,9 @@ Grammar:
 
   # 转义字符使用 "xxx" 囊括该终结符
   Terminal-Symbols:
-		- +
-		- "-"
-		- num
+   - +
+   - "-"
+   - num
 
   # 如果表达式右端包含转义字符使用 "xxx .. xxx" 囊括整个右端
   Productions:
