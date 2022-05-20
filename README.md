@@ -16,7 +16,7 @@
 
 ### Third Party Library
 
-yaml-cpp，项目包括已构建好相关的静态库，包括 `macOS/Linux` 平台下的 `LR1-Parser/lib/libyaml-cpp.a`，以及 `windows` 平台下的`libyaml-cppmd.lib`（Release）和`libyaml-cppmdd.lib（Debug）`。
+yaml-cpp，项目包括已构建好相关的静态库，包括 `macOS/Linux` 平台下的 `LR1-Parser/lib/libyaml-cpp.a`，以及 `windows` 平台下的`libyaml-cppmd.lib（Release）`和`libyaml-cppmdd.lib（Debug）`。
 
 ### Environment and Softwares
 
