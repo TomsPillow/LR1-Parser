@@ -174,7 +174,7 @@ options:
 
 ## Reference
 
-* A PRACTICAL METHOD FOR SYNTACTIC ERROR DIAGNOSIS AND RECOVERY, by Michael Burke Gerald A. Fisher Jr., Courant Institute New York University 251 Mercer Street New York, New York 10012 
+* [A PRACTICAL METHOD FOR SYNTACTIC ERROR DIAGNOSIS AND RECOVERY, by Michael Burke Gerald A. Fisher Jr., Courant Institute New York University 251 Mercer Street New York, New York 10012](https://github.com/samona-omo/LR1-Parser/blob/main/docs/A%20PRACTICAL%20METHOD%20FOR%20SYNTACTIC%20ERROR%20DIAGNOSIS%20AND%20RECOVERY.pdf)
 
 * A Powerful LR Error Recovery Mechanism in the Compiler Implementation System Environment, Mariza A. S. Bigonha, Roberto S. Bigonha 
 
