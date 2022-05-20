@@ -178,4 +178,4 @@ options:
 
 * [A Powerful LR Error Recovery Mechanism in the Compiler Implementation System Environment, Mariza A. S. Bigonha, Roberto S. Bigonha](https://github.com/samona-omo/LR1-Parser/blob/main/docs/LR(1)-Error%20Recovery%20Mechanism.pdf)
 
-* A Practical Minimum Distance Method for Syntax Error Handling, J. A. Dain, Department of Computer Science University of Warwick Coventry, CV4 7AL
+* [A Practical Minimum Distance Method for Syntax Error Handling, J. A. Dain, Department of Computer Science University of Warwick Coventry, CV4 7AL](https://github.com/samona-omo/LR1-Parser/blob/main/docs/A%20Practical%20Minimum%20Distance%20Method.pdf)
